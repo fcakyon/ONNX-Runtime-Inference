@@ -1,8 +1,8 @@
 # FROM nvcr.io/nvidia/cuda:10.2-cudnn8-devel-ubuntu18.04
-FROM nvcr.io/nvidia/cuda:11.2.1-cudnn8-devel-ubuntu20.04
+FROM nvcr.io/nvidia/cuda:11.2.1-cudnn8-devel-ubuntu18.04
 # FROM nvcr.io/nvidia/tensorrt:20.09-py3
 
-ARG OPENCV_VERSION=4.5.0
+ARG OPENCV_VERSION=4.5.2
 ARG ONNXRUNTIME_VERSION=1.7.2
 ARG NUM_JOBS=12
 
@@ -89,7 +89,7 @@ RUN cd /tmp && \
         -DBUILD_JPEG=OFF \
         -DBUILD_JASPER=OFF \
         -DBUILD_ZLIB=OFF \
-        -DBUILD_EXAMPLES=ON \
+        -DBUILD_EXAMPLES=OFF \
         -DBUILD_JAVA=OFF \
         -DBUILD_opencv_python2=OFF \
         -DBUILD_opencv_python3=ON \
@@ -104,10 +104,10 @@ RUN cd /tmp && \
         -DWITH_TBB=ON \
         -DWITH_1394=OFF \
         -DWITH_OPENEXR=OFF \
-        -DCUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda \
-        -DCUDA_ARCH_BIN='3.0 3.5 5.0 6.0 6.2 7.0 7.5 8.0 8.6' \
+        -DCUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda-11.2 \
+        -DCUDA_ARCH_BIN='3.5 5.0 6.0 6.2 7.0 7.5 8.0 8.6' \
         -DCUDA_ARCH_PTX="" \
-        -DINSTALL_C_EXAMPLES=ON \
+        -DINSTALL_C_EXAMPLES=OFF \
         -DINSTALL_TESTS=OFF \
         -DOPENCV_TEST_DATA_PATH=../opencv_extra-${OPENCV_VERSION}/testdata \
         ../opencv-${OPENCV_VERSION} && \
